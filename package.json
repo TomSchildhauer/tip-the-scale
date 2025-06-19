@@ -1,0 +1,21 @@
+{
+  "name": "tipthescale",
+  "version": "1.0.0",
+  "description": "Tip the Scale game",
+  "private": true,
+  "scripts": {
+    "clean": "shx rm -rf dist",
+    "prep-dirs": "shx mkdir -p dist/css dist/js dist/images",
+    "build:css": "sass src/scss/tipthescale_0.4.scss dist/css/style.min.css --style=compressed --no-source-map",
+    "build:js": "shx cp src/js/tipthescale_0.4.js dist/js/main.js",
+    "copy:html": "shx cp src/index.html dist/index.html",
+    "copy:images": "shx cp -R src/images/* dist/images/",
+    "copy:manifest": "shx cp src/manifest_0.4.json dist/manifest.json",
+    "copy:assets": "shx cp src/parallelogram.svg dist/parallelogram.svg && shx cp src/apple-touch-icon.png dist/apple-touch-icon.png && shx cp src/favicon.png dist/favicon.png",
+    "build": "npm run clean && npm run prep-dirs && npm run build:css && npm run build:js && npm run copy:html && npm run copy:images && npm run copy:manifest && npm run copy:assets"
+  },
+  "devDependencies": {
+    "sass": "^1.70.0",
+    "shx": "^0.3.4"
+  }
+}
