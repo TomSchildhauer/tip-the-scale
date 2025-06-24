@@ -1,0 +1,391 @@
+:root {
+    --playfieldWidth: 0;
+    --maxPlayfieldWidth: 600px;
+
+    // https://paletton.com/#uid=70I250krlBO3DTthuFhGKtoP4ka
+
+    --playfieldBGColor: rgba(209, 223, 234, 0.809);
+    --easierGameColor: #9E0008;
+    --easierGameHover: #E6000B;
+    --harderGameColor: #0C8400;
+    --harderGameHover: #12C000;
+    --editButtonColor: #EA8600;
+    --editButtonHover: #FFA225;
+    --playButtonColor: #0C8400;
+    --playButtonHover: #12C000;
+    --settingButtonColor: #EA8600;
+    --shareInputBackgroundColor: #A15C00;
+
+    --buttonWidth: calc((96.8vw / var(--playfieldWidth)));
+    --maxButtonWidth: calc(var(--maxPlayfieldWidth) / var(--playfieldWidth));
+}
+
+* {
+    font-family: 'Open Sans', sans-serif;
+    box-sizing: border-box;
+}
+
+@keyframes bgMovement {
+    from {
+        background-position-x: 0px;
+        background-position-y: 0px;
+    }
+    to {
+        background-position-x: 240px;
+        background-position-y: -80px;
+    }
+}
+
+body {
+    background:url("/images/bg.png");
+    background-repeat:repeat;
+
+    background-color: #D1DFEA;
+
+    animation-name: bgMovement;
+    animation-duration: 30s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+
+    //overflow: hidden;
+}
+
+#header_div {
+    display: contents;
+    background-color: var(--playfieldBGColor);
+}
+
+#title_image {
+    height: 220%;
+
+    margin-right: 10px;
+}
+
+#heading {
+    font-family: 'Purple Purse', cursive;
+    text-align: center;
+    height: 40px;
+    
+    @media only screen and (min-width: 768px) {
+        height: 30px;
+        font-size: 4.5rem;
+    }
+    
+    @media all and (display-mode: standalone) { 
+        height: 25px;
+        font-size: 2.2rem;
+    }
+
+    margin-bottom: 80px;
+}
+
+button:active, button:focus, input:active, input:focus {
+    outline : 0;
+    -moz-outline : 0;
+}
+
+button img {
+    height: 80%;
+    align-self: center;
+}
+
+.max-width-area {
+    display: block;
+    max-width: var(--maxPlayfieldWidth);
+    max-height: 1200px;
+    margin: auto;
+}
+
+.playfield_buttons {
+    width: var(--buttonWidth);
+    height: var(--buttonWidth);
+
+    max-width: var(--maxButtonWidth);
+    max-height: var(--maxButtonWidth);
+
+    overflow: hidden;
+
+    font-size: 4rem;
+
+    cursor: pointer;
+
+    border: solid rgba($color: #000000, $alpha: 0.2) 7px;
+
+    transition: background-color 0.17s;
+}
+
+.playfield_buttons > img {
+    width: 100%;
+    height: 100%;
+    margin: auto;
+}
+
+.button-content_-1 {
+    background-color: rgba(0, 0, 0, 0.123);
+    font-size: 0rem;
+}
+
+.button-content_0 {
+    background-color: #12C000;
+    font-size: 0rem;
+}
+
+.button-content_1 {
+    background-color: #FFA225;
+    font-size: 0rem;
+}
+
+.button-content_2 {
+    background-color: #9E0008;
+    font-size: 0rem;
+}
+
+.button-content_3 {
+    background-color: #065897;
+    font-size: 0rem;
+}
+
+.playfield {
+    background-color: var(--playfieldBGColor);
+
+    display: grid;
+
+    grid-template-columns: repeat(var(--playfieldWidth), auto);
+    grid-template-rows: repeat(var(--playfieldWidth), auto);
+
+    max-width: var(--maxPlayfieldWidth);
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#buttonTemplate_button {
+    display: none;
+}
+
+#settings_form {
+    display: flex;
+    flex-direction: column;
+    line-height: 1rem;
+    font-size: 10pt;
+
+    .hideable {
+        transition: max-height .25s ease-in;
+        max-height: 500px;
+        overflow: hidden;
+        margin-bottom: 5px;
+
+        label {
+            float: left;
+            width: 25%;
+            min-width: 120px;
+        }
+        
+        input {
+            text-align: center;
+
+            width: 70%;
+            max-width: 140px;
+            font-size: 8pt;
+        }
+
+        @media only screen and (min-width: 768px) {
+            line-height: 1.5rem;
+            font-size: 14pt;
+
+            label {
+                float: left;
+                width: 25%;
+                min-width: 120px;
+            }
+            
+            input {
+                width: 70%;
+                max-width: 140px;
+                margin-bottom: 0px;
+                font-size: 14pt;
+            }    
+        }
+        
+        &.hidden {
+            max-height: 0;
+            margin: 0;
+            transition: max-height 0.1s ease-out;
+           
+            div {
+                visibility: hidden;
+            }
+        }
+    }
+    
+}
+
+.flexNeighbors {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    
+}
+
+.fullwidthbutton {
+    font-size: 15pt;
+    height: 40px;
+    width: 100%;
+    color: white;
+    border-color: rgba($color: #ffffff, $alpha: 0.5);
+    border-width: 3px;
+    @media only screen and (min-width: 768px) {
+        font-size: 20pt;
+        height: 60px;    
+    }
+    @media all and (display-mode: standalone) { 
+        height: 60px;
+    }
+    cursor: pointer;
+    transition: background-color .1s ease-out;
+}
+
+#toggleSettings_button {
+    width: 40px;    
+    background-color: var(--settingButtonColor);
+    @media only screen and (min-width: 768px), (display-mode: standalone) {
+        width: 60px;    
+    }
+
+    &:hover {
+        background-color: var(--editButtonHover);
+    }
+
+    &.inset {
+        border-style: inset;
+    }
+}
+
+#easierGame_button {
+    background-color: var(--easierGameColor);
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+#easierGame_button:hover {
+    background-color: var(--easierGameHover);
+}
+
+#harderGame_button {
+    background-color: var(--harderGameColor);
+
+    &:hover {
+        background-color: var(--harderGameHover);
+        
+        &:disabled .tooltiptext {
+            visibility: visible;
+        }
+    }
+
+    .tooltiptext {
+        visibility: hidden;
+
+        background-color: var(--shareInputBackgroundColor);
+
+        border-color: var(--settingButtonColor);
+        border-style: ridge;
+        border-width: 3px;
+        
+        font-size: 20pt;
+        color: #fff;
+
+        text-align: center;
+        padding: 20px;
+        
+        position: absolute;
+        z-index: 1;
+
+        width: 260px;
+        bottom: 10.8%;
+        left: 50%; 
+        margin-left: 38px;
+    }
+}
+
+#harderGame_button:disabled {
+    background-color: #000000af;
+    color: #8b8b8b;
+    cursor: no-drop;
+}
+
+#customGame_button {
+    display: none;
+    background-color: var(--editButtonColor);
+    width: 100%;
+    margin-left: 5px;
+}
+
+#customGame_button:hover {
+    background-color: var(--editButtonHover);
+}    
+
+#edit_play_button {
+    background-color: var(--editButtonColor);
+    width: 100%;
+
+    &:hover {
+        background-color: var(--editButtonHover);
+    }
+
+    &.inEditMode {
+        background-color: var(--playButtonColor);
+        width: 49.5%;
+        &:hover {
+            background-color: var(--playButtonHover);
+        }
+    }
+}
+
+#scramble_button {
+    display: none;
+    width: 49.5%;
+
+    background-color: var(--editButtonColor);
+
+    &:hover {
+        background-color: var(--editButtonHover);
+    }
+}
+
+#scramble_button.inEditMode {
+    display: block;
+    float: right;
+}
+
+#sharea {
+    display: flex;
+    flex-flow: column;
+    @media only screen and (min-width: 768px) {
+        flex-flow: row;
+    }
+    margin-top: 5px;
+    width: 100%;
+}
+
+#share_label {
+    font-size: 12pt;
+    @media only screen and (min-width: 768px) {
+        font-size: 20pt;
+    }
+    margin: 0px 20px 0px 0px;
+}
+
+#share_input {
+    background-color: var(--shareInputBackgroundColor);
+
+    // border-color: rgba($color: #000000, $alpha: 0.5);
+    // border-width: 2px;
+    border-style: inset;
+
+    color: rgba(255, 255, 255, 0.45);
+    font-family: 'Cutive Mono', monospace;
+    text-decoration: underline;
+    
+    font-size: 12pt;
+    flex: 1;
+    padding: 0px 5px 0px 5px;
+}

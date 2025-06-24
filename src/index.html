@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <meta name="mobile-web-app-capable" content="yes">
+    
+    <link href="https://fonts.googleapis.com/css?family=Cutive+Mono|Open+Sans|Abril+Fatface|Purple+Purse" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/style.min.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="icon" href="./favicon.png">
+
+    <head>
+        <title>Tip the Scale</title>
+    </head>
+
+    <body>
+        <div class="max-width-area">
+
+            <div id="header_div">
+                <h1 id="heading">
+                    <img id="title_image" src="images/Logo.png" alt="Tip The Scale">
+                    Tip the Scale
+                </h1>
+            </div>
+
+            <!-- <hr> -->
+            <div id="settings_div">
+                <button id="edit_play_button" class="fullwidthbutton" onclick="toggleEditMode()">Edit</button>
+                <button id="scramble_button" class="fullwidthbutton" onclick="scramble(true)">Scramble</button>
+    
+                </div>
+
+            <!-- <hr> -->
+
+            <div class="playfield" id="playfield_div">
+                <!-- WILL BE FILLED BY SCRIPT -->
+            </div>
+            
+            <form id="settings_form" action="javascript:startCustomGame();">
+                <div id="innerSettings_div" class="hideable hidden">
+                    <div>
+                        <label for="width_input">playfield size:</label>
+                        <div class="unit_text">
+                        <input id="width_input" value="6" onfocus="this.select()">
+                        boxes</div>
+                    </div>
+                    <div>
+                        <label for="variety_input">color variety:</label>
+                        <input id="variety_input" value="2" onfocus="this.select()">
+                        colors
+                    </div>
+                    <div>
+                        <label for="fillRatio_input">filled proportion:</label>
+                        <input id="fillRatio_input" value="40" onfocus="this.select()">
+                        %
+                    </div>
+                </div>
+                <div class="flexNeighbors">
+                    <button id="toggleSettings_button" type="button" class="fullwidthbutton" onclick="toggleSettingVisibility()"><img src="./images/settings.png" style="margin-top: 6px;"></button>
+                    <button id="customGame_button" class="fullwidthbutton">Custom Level</button>
+                    <button type="button" id="easierGame_button" class="fullwidthbutton" onclick="startEasierGame()">New Level</button>
+                    <button type="button" id="harderGame_button" class="fullwidthbutton" onclick="startHarderGame()" disabled>Next Level<span class="tooltiptext">Solve this Level to continue!</span></button>
+                </div>
+            </form>
+
+            <hr>
+            <div id="sharea">
+                <label for="share_input" id="share_label">Share Game State?</label>
+                <input type="text" id="share_input" onfocus="this.select()" onclick="this.select()" readonly>
+            </div>
+        </div>
+    </body>
+
+    <button id="buttonTemplate_button" class="playfield_buttons" onclick="hitQuit()"></button>
+
+</html>
+
+<script src="js/main.js"></script>

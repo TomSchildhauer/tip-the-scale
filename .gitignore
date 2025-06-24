@@ -23,3 +23,10 @@ Thumbs.db
 .vscode/
 *.swp
 *.swo
+
+# Resources
+Resources/
+
+# Context Crafter
+.contextcrafterconfig.json
+crafted_context*.md
